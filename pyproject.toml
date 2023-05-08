@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "alegro"
+version = "0.1.0"
+description = ""
+authors = ["Aliev Nurlan <nualiev420@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+kivy = {extras = ["base"], version = "^2.1.0"}
+pillow = "^9.5.0"
+kivy-examples = "^2.1.0"
+psycopg2 = "^2.9.6"
+python-dotenv = "^1.0.0"
+cython = "^0.29.34"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+app = "alegro.interface:main"

@@ -1,0 +1,270 @@
+WindowManager:
+    HomePage:
+    Search:
+    AddItem:
+
+<ItemLabel@Label>:
+    font_size: '25sp'
+    halign: 'left'
+    valign: 'middle'
+    text_size: self.size
+
+
+<HomePage>:
+    name: 'home'
+    ScreenManager:
+        name: 'Home'
+
+    GridLayout
+        cols: 2
+        padding: 20
+        size_hint: 1, 0.5
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        spacing: 20
+
+        Button:
+
+            text: 'Add item'
+            font_size: '30sp'
+
+            on_release:
+                app.root.current = 'add_item'
+                root.manager.transition.direction = 'right'
+
+
+        Button:
+
+            text: 'Search item'
+            font_size: '30sp'
+            on_release:
+                app.root.current = 'second'
+                root.manager.transition.direction = 'left'
+
+
+        Button:
+            text: 'Update item'
+            font_size: '30sp'
+
+        Button:
+            text: 'Delete item'
+            font_size: '30sp'
+
+
+<Search>:
+    name: 'second'
+
+    text_input: text_input
+    retail: retail
+    wholesale: wholesale
+    stock: stock
+    distant: distant
+    good_name: good_name
+
+    GridLayout:
+
+        padding: 20
+        rows: 5
+
+        GridLayout:
+
+            cols: 2
+            size_hint: 1, 0.08
+            padding: [0, 0, 0, 7]
+
+            Button:
+
+                text: 'Back'
+                size_hint: 0.2, 1
+
+                on_release:
+                    app.root.current = 'home'
+                    root.manager.transition.direction = 'right'
+
+            Label:
+                text: 'Search Item'
+                font_size: '30sp'
+                pos_hint: {'center_x': 0.5}
+
+        BoxLayout:
+            spacing: 5
+            size_hint: 1, 0.1
+            TextInput:
+                id: text_input
+                hint_text: 'Write item name'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+
+            Button:
+                text: 'Search'
+                size_hint: 0.2, 1
+                on_release:
+                    root.search()
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': 0.5}
+            Label:
+                text: 'FOTO'
+                size_hint: 1, 0.8
+            Label:
+                id: good_name
+                text: ''
+                font_size: '25sp'
+                size_hint: 0.2, 0.2
+                pos_hint: {'center_x': 0.5}
+
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            BoxLayout:
+                orientation: 'vertical'
+
+                ItemLabel:
+                    text: 'Retail price'
+
+                ItemLabel:
+                    text: 'Wholesale price'
+
+                ItemLabel:
+                    text: 'Stock'
+
+                ItemLabel:
+                    text: 'Distant Stock'
+
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    id: retail
+                    text: ''
+                    font_size: '25sp'
+
+                Label:
+                    id: wholesale
+                    text: ''
+                    font_size: '25sp'
+
+                Label:
+                    id: stock
+                    text: ''
+                    font_size: '25sp'
+
+                Label:
+                    id: distant
+                    text: ''
+                    font_size: '25sp'
+
+
+<AddItem>:
+    name: 'add_item'
+
+    item_name: item_name
+    retail_price: retail_price
+    wholesale_price: wholesale_price
+    near_stock: near_stock
+    distant_stock: distant_stock
+    empty_field: empty_field
+
+    GridLayout:
+        padding: 20
+        rows: 8
+        spacing: 10
+
+        GridLayout:
+            size_hint: 0.2, 0.05
+            cols: 2
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'top'
+                size_hint: 0.2, 0.05
+
+                ItemLabel:
+                    text: 'Add New Item'
+                    font_size: '30sp'
+
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'top'
+                size_hint: 0.2, 0.05
+
+                Button:
+                    size_hint_x: 0.3
+                    text: 'Back'
+                    on_release:
+                        app.root.current = 'home'
+                        root.manager.transition.direction = 'left'
+                        root.clear_empty()
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, 0.15
+            TextInput:
+                id: item_name
+                hint_text: 'Item name'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, 0.15
+            TextInput:
+                id: retail_price
+                hint_text: 'Retail price'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+                input_type: 'number'
+                input_filter: 'int'
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, 0.15
+            TextInput:
+                id: wholesale_price
+                hint_text: 'Wholesale price'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+                input_type: 'number'
+                input_filter: 'int'
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, 0.15
+            TextInput:
+                id: near_stock
+                hint_text: 'Stock'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, 0.15
+            TextInput:
+                id: distant_stock
+                hint_text: 'Distant Stock'
+                size_hint: 0.8, 1
+                multiline: False
+                font_size: '30sp'
+
+        BoxLayout:
+            size_hint: 1, 0.17
+            Label:
+                id: empty_field
+                text: ''
+                font_size: 25
+                halign: 'center'
+                valign: 'middle'
+
+        BoxLayout:
+            size_hint: 1, 0.08
+            Button:
+                text: 'Save'
+
+                on_release:
+                    root.new_item()
+                    app.root.current = 'home'
+                    root.manager.transition.direction = 'left'
+                    root.clear_text_input()
